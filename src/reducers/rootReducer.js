@@ -22,7 +22,20 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-    return state;
+
+    switch (action.type){
+        case 'DELETE_POST':
+            let newPosts = state.posts.filter( post => {
+                return post.id !== action.id;
+            });
+            return {
+                ...state,
+                posts: newPosts
+            }
+        default:
+            return state;
+    }
+
 }
 
 export default rootReducer;
